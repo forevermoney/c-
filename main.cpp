@@ -2,7 +2,7 @@
 #include <vector>
 #include <ctime>
 #include <unordered_set>
-
+#include <stack>
 /*-----------动态规划-----------*/
 /*----------单词拆分----------*/
 /*
@@ -67,35 +67,35 @@ public:
      * @param prices: Given an integer array
      * @return: Maximum profit
      */
-   /* int maxProfit(vector<int> &prices) {
-        // write your code here
-        if(prices.size() == 0){ //时刻注意数组越界
-            return 0;
-        }
+/* int maxProfit(vector<int> &prices) {
+     // write your code here
+     if(prices.size() == 0){ //时刻注意数组越界
+         return 0;
+     }
 
-        int max = 0;
-        int cur = prices[0];
-        for(int i = 0; i < prices.size(); ++i){
-            if(prices[i] < cur){ //卖掉会亏
-                cur = prices[i];
-            }else{ //卖掉能挣
-                int tmp = prices[i] - cur;
-                if(tmp > max){
-                    max = tmp;
-                }
-            }
-        }
-        return max;
-    }
+     int max = 0;
+     int cur = prices[0];
+     for(int i = 0; i < prices.size(); ++i){
+         if(prices[i] < cur){ //卖掉会亏
+             cur = prices[i];
+         }else{ //卖掉能挣
+             int tmp = prices[i] - cur;
+             if(tmp > max){
+                 max = tmp;
+             }
+         }
+     }
+     return max;
+ }
 };
 int main(){
-    vector<int> a;
-    for(int i=0;i<5;i++){
-        a.push_back(i);
-    }
-    Solution *s=new Solution;
-    cout<<s->maxProfit(a);
-    return 0;
+ vector<int> a;
+ for(int i=0;i<5;i++){
+     a.push_back(i);
+ }
+ Solution *s=new Solution;
+ cout<<s->maxProfit(a);
+ return 0;
 }*/;
 /*-----------二叉树----------*/
 /*---------前序和中序遍历构造二叉树---------*/
@@ -128,22 +128,88 @@ public:
      * @param postorder: A list of integers that postorder traversal of a tree
      * @return: Root of a tree
      */
- /*   TreeNode * buildTree(vector<int> &inorder, vector<int> &postorder) {
-        // write your code here
-        TreeNode *tn=new TreeNode(0);
-        int i;
-        if(tn==NULL){
-            return  NULL;
-        }
-        tn->val=inorder[0];
-        while(i<inorder.size()-1){
-            if(inorder[i]>inorder[i+1]){
-                tn->left->val=inorder.at(i+1);
-                tn=tn->left;
-            } else if(inorder[i]<inorder[i+1]){
+/*   TreeNode * buildTree(vector<int> &inorder, vector<int> &postorder) {
+       // write your code here
+       TreeNode *tn=new TreeNode(0);
+       int i;
+       if(tn==NULL){
+           return  NULL;
+       }
+       tn->val=inorder[0];
+       while(i<inorder.size()-1){
+           if(inorder[i]>inorder[i+1]){
+               tn->left->val=inorder.at(i+1);
+               tn=tn->left;
+           } else if(inorder[i]<inorder[i+1]){
 
+       }
+   }
+};
+*/
+/*--------------栈---------------*/
+/*实现一个带有取最小值min方法的栈，min方法将返回当前栈中的最小值。
+ *你实现的栈将支持push，pop 和 min 操作，所有操作要求都在O(1)时间内完成。
+ */
+//Tips:
+// 每次压入一个新元素的时候，先将栈里所有元素排序，让最小的元素位于栈顶，这样就能在O(1)的时间得到最小的元素了。
+// 这样有一个缺点就是，不能保证最后压入的元素最先出栈。
+//《剑指offer》给出的思路是增加一个辅助栈（用于存放数据栈之前最小的元素与新压入栈元素之间的较小值）。
+
+/*using namespace std;
+class MinStack {
+public:
+    stack<int> mainStack;
+    stack<int> helpStack;
+
+    MinStack() {
+        // do intialization if necessary
+    }
+
+    /*
+     * @param number: An integer
+     * @return: nothing
+     */
+/*
+    void push(int number) {
+        // write your code here
+        int top;
+        mainStack.push(number);
+
+        if (!helpStack.empty())
+            top = helpStack.top();
+        else
+            top = number;
+
+        if (number > top)
+            helpStack.push(top);
+        else
+            helpStack.push(number);
+    }
+
+    /*
+     * @return: An integer
+     */
+/*
+    int pop() {
+        // write your code here
+        if(!mainStack.empty()) {
+            int data = mainStack.top();
+            mainStack.pop();
+            helpStack.pop();
+            return data;
+        }
+    }
+
+    /*
+     * @return: An integer
+     */
+/*
+    int min() {
+        // write your code here
+        if(!helpStack.empty()) {
+            int data = helpStack.top();
+            return data;
         }
     }
 };
 */
-
