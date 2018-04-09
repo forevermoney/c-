@@ -213,3 +213,59 @@ public:
     }
 };
 */
+/*-----------------归并排序-----------------*/
+
+/*using namespace std;
+
+class Solution {
+public:
+    void Mersort(vector<int> &a, int l1, int r1, int l2, int r2) {
+        int i = l1;
+        int j = l2;
+        int k = 0;
+        int n = (r1 - l1 + 1) + (r2 - l2 + 1);
+        vector<int> temp(n);
+        while(i<=r1&&j<=r2) {
+            if (a[i] <a[j]) {
+                /*
+                 * 特别注意i++与++i的区别,一个是先引用再增加,一个是先增加再引用
+                 */
+ /*               temp[k++] = a[i++];
+            }
+            else {
+                temp[k++] = a[j++];
+            }
+        }
+        while (i <= r1) {
+            temp[k++] = a[i++];
+        }
+        while (j <= r2) {
+            temp[k++] = a[j++];
+        }
+        for (int l = 0; l < n; l++) {
+            a[l1 + l] = temp[l];
+        }
+
+    }
+
+    void merge(vector<int> &a, int start, int end) {
+        if(start<end) {
+            int mid = (start + end)/2;
+            merge(a, start, mid);
+            merge(a, mid + 1, end);
+            Mersort(a, start, mid, mid + 1, end);
+        }
+    }
+
+};
+
+int main() {
+    Solution *s=new Solution;
+     vector<int> a={1,4,6,3,8,7,0};
+    s->merge(a,0,6);
+    for(auto x:a){
+        cout<<x<<",";
+    }
+    cout << endl;
+    return 0;
+}
